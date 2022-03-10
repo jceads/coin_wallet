@@ -1,18 +1,8 @@
-import 'package:coin_wallet/feature/short_coin_list/model/short_coin_list.dart';
-import 'package:coin_wallet/feature/short_coin_list/view/short_coin_view.dart';
 import 'package:dio/dio.dart';
 
+import '../../../core/network_manager/i_coin_service_manager.dart';
+import '../../short_coin_list/model/short_coin_list.dart';
 import '../model/coin_model.dart';
-
-abstract class ICoinServiceManager {
-  Dio dio;
-  ICoinServiceManager({
-    required this.dio,
-  });
-  Future<List<CoinModel>?> getCoinList();
-  Future<List<ShortCoinModel>?> getShortCoinList();
-  Future<List<ShortCoinModel>?> searchCoin(String id);
-}
 
 class CoinServiceManager extends ICoinServiceManager {
   CoinServiceManager(Dio dio) : super(dio: dio);
@@ -42,8 +32,8 @@ class CoinServiceManager extends ICoinServiceManager {
     }
   }
 
-  Future<List<ShortCoinModel>?> searchCoin(String id) async {
-    final response = await dio.get("?id=$id");
+  Future<List<ShortCoinModel>?> searchCoin(int? id) async {
+    final response = await dio.get("coin/markets/?id=$id");
     if (response.statusCode == 200) {
       final _temp = (response.data as List)
           .map((e) => ShortCoinModel.fromJson(e))

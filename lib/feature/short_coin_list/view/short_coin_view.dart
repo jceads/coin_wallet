@@ -1,7 +1,7 @@
-import 'package:coin_wallet/core/network_manager/coin_network_manager.dart';
-import 'package:coin_wallet/feature/coinlist/service/service_manager.dart';
-import 'package:coin_wallet/feature/coinlist/view_model/coin_list_viewmodel.dart';
-import 'package:coin_wallet/feature/short_coin_list/service/short_coin_list_service.dart';
+import '../../../core/network_manager/coin_network_manager.dart';
+import '../../coinlist/service/service_manager.dart';
+import '../../coinlist/view_model/coin_list_viewmodel.dart';
+import '../service/short_coin_list_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

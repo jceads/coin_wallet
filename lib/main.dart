@@ -1,4 +1,6 @@
-import 'package:coin_wallet/feature/coinlist/view/coin_list_view.dart';
+import 'package:coin_wallet/feature/search_coin/view/search_coin_view.dart';
+
+import 'feature/coinlist/view/coin_list_view.dart';
 import 'package:flutter/material.dart';
 
 import 'feature/short_coin_list/view/short_coin_view.dart';
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       title: 'Material App',
-      home: ShortCoinList(),
+      home: SearchCoinView(),
     );
   }
 }

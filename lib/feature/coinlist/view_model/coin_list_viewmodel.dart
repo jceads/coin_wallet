@@ -1,7 +1,9 @@
 import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
-import 'package:coin_wallet/feature/coinlist/model/coin_model.dart';
-import 'package:coin_wallet/feature/coinlist/service/service_manager.dart';
+
+import '../../../core/network_manager/i_coin_service_manager.dart';
+import '../model/coin_model.dart';
 
 class CoinListCubit extends Cubit<CoinListState> {
   CoinListCubit(this.coinServiceManager) : super(CoinListInitial()) {

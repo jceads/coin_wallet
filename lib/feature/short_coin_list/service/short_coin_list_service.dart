@@ -1,7 +1,8 @@
-import 'package:coin_wallet/feature/coinlist/model/coin_model.dart';
-import 'package:coin_wallet/feature/coinlist/service/service_manager.dart';
-import 'package:coin_wallet/feature/short_coin_list/model/short_coin_list.dart';
-import 'package:coin_wallet/feature/short_coin_list/view/short_coin_view.dart';
+import '../../../core/network_manager/i_coin_service_manager.dart';
+import '../../coinlist/model/coin_model.dart';
+import '../../coinlist/service/service_manager.dart';
+import '../model/short_coin_list.dart';
+import '../view/short_coin_view.dart';
 import 'package:dio/src/dio.dart';
 
 class ShortCoinListService extends ICoinServiceManager {
@@ -23,7 +24,7 @@ class ShortCoinListService extends ICoinServiceManager {
   }
 
   @override
-  Future<List<ShortCoinModel>?> searchCoin(String id) {
+  Future<List<ShortCoinModel>?> searchCoin(int? id) {
     // TODO: implement searchCoin
     throw UnimplementedError();
   }

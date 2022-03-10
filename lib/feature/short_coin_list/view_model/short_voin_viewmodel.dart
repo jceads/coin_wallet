@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:coin_wallet/feature/coinlist/service/service_manager.dart';
-import 'package:coin_wallet/feature/short_coin_list/model/short_coin_list.dart';
+import '../../../core/network_manager/i_coin_service_manager.dart';
+import '../../coinlist/service/service_manager.dart';
+import '../model/short_coin_list.dart';
 
 class ShortCoinListCubit extends Cubit<ShortCoinListState> {
   ShortCoinListCubit(this.coinServiceManager) : super(ShortCoinListInitial()) {

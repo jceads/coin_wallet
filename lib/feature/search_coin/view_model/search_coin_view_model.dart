@@ -1,28 +1,36 @@
-import 'package:coin_wallet/feature/coinlist/service/service_manager.dart';
-import 'package:coin_wallet/feature/short_coin_list/model/short_coin_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/network_manager/i_coin_service_manager.dart';
+import '../../short_coin_list/model/short_coin_list.dart';
+
 class SearchCoinCubit extends Cubit<SearchCoinState> {
-  SearchCoinCubit() : super(SearchCoinInitial());
+  SearchCoinCubit(this.searchController, this.manager, this.searchText)
+      : super(SearchCoinInitial());
 
   ICoinServiceManager? manager;
   List<ShortCoinModel>? searchedCoinList;
+  String? searchText;
 
-  void searchCoin(String id) {
-    emit(SearchNotFoundCoin());
-    final _coins = manager?.searchCoin(id);
-    if (_coins == null) {
-      emit(SearchNotFoundCoin());
-    } else {
-      searchedCoinList = _coins as List<ShortCoinModel>?;
-      emit(SearchCoinCompleted(searchedCoinList));
+  final TextEditingController searchController;
+
+  void searchCoin(String? id) async {
+    emit(LoadingState());
+    if (id != null) {
+      final _coins = await manager?.searchCoin(int.parse(id));
+      if (_coins?.length == 0) {
+        emit(SearchNotFoundCoin());
+      } else {
+        searchedCoinList = _coins;
+        emit(SearchCoinCompleted(searchedCoinList));
+      }
     }
   }
 }
 
-class SearchCoinInitial extends SearchCoinState {}
-
 class SearchCoinState {}
+
+class SearchCoinInitial extends SearchCoinState {}
 
 class SearchCoinCompleted extends SearchCoinState {
   final List<ShortCoinModel>? list;
@@ -31,3 +39,12 @@ class SearchCoinCompleted extends SearchCoinState {
 }
 
 class SearchNotFoundCoin extends SearchCoinState {}
+
+class SearchingCoinState extends SearchCoinState {
+  Future<VoidCallback>? function;
+  SearchingCoinState({
+    this.function,
+  });
+}
+
+class LoadingState extends SearchCoinState {}

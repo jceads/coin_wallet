@@ -1,8 +1,9 @@
-import 'package:coin_wallet/core/network_manager/coin_network_manager.dart';
-import 'package:coin_wallet/feature/coinlist/service/service_manager.dart';
-import 'package:coin_wallet/feature/coinlist/view_model/coin_list_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/network_manager/coin_network_manager.dart';
+import '../service/service_manager.dart';
+import '../view_model/coin_list_viewmodel.dart';
 
 class CoinList extends StatelessWidget {
   const CoinList({Key? key}) : super(key: key);
@@ -16,29 +17,24 @@ class CoinList extends StatelessWidget {
           CoinListCubit(CoinServiceManager(CoinNetworkService.instance.dio)),
       child: Scaffold(
         appBar: AppBar(),
-        body: BlocProvider(
-          create: (context) => CoinListCubit(
-              CoinServiceManager(CoinNetworkService.instance.dio)),
-          child: BlocConsumer<CoinListCubit, CoinListState>(
-            builder: (context, state) {
-              if (state is CoinListComplete) {
-                return CoinListViewBuild(state, img_url);
-              } else if (state is CoinListInitial) {
-                return ProgressBarCentered();
-              } else if (state is CoinListError) {
-                return ErrorStateWidget();
-              } else {
-                return ProgressBarCentered();
-              }
-            },
-            listener: (context, state) {
-              if (state is CoinListError) {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (context) => const Text("Error"));
-              }
-            },
-          ),
+        body: BlocConsumer<CoinListCubit, CoinListState>(
+          builder: (context, state) {
+            if (state is CoinListComplete) {
+              return CoinListViewBuild(state, img_url);
+            } else if (state is CoinListInitial) {
+              return ProgressBarCentered();
+            } else if (state is CoinListError) {
+              return ErrorStateWidget();
+            } else {
+              return ProgressBarCentered();
+            }
+          },
+          listener: (context, state) {
+            if (state is CoinListError) {
+              showModalBottomSheet(
+                  context: context, builder: (context) => const Text("Error"));
+            }
+          },
         ),
       ),
     );
