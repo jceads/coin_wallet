@@ -1,0 +1,10 @@
+https://api.coinlore.net/api/coin/markets/?id=90 turns coin list
+https://api.coinlore.net/api/ticker/?id=89 turns single coin but in list
+https://api.coinlore.net/api/tickers/ turns in data list property
+https://api.coinlore.net/api/ticker/?id=90 id represents coins
+
+
+
+
+
+base url is until api/
