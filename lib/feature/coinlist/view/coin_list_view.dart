@@ -10,8 +10,7 @@ class CoinList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var img_url =
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoinmarketcap.com%2Ftr%2Fcurrencies%2Fbitcoin%2F&psig=AOvVaw3Siu3D82DJSoPeluUM5T2a&ust=1647010214991000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCND-rKnlu_YCFQAAAAAdAAAAABAD";
+    var img_url = "https://s2.coinmarketcap.com/static/img/coins/200x200/1.png";
     return BlocProvider(
       create: (context) =>
           CoinListCubit(CoinServiceManager(CoinNetworkService.instance.dio)),
@@ -47,8 +46,8 @@ class CoinList extends StatelessWidget {
               child: ListTile(
                 title: Text(
                     "${state.items?[index].name}, ${state.items?[index].nameid}"),
-                subtitle:
-                    Text("Price: ${state.items?[index].priceUsd.toString()}"),
+                subtitle: Text(
+                    "Price: ${state.items?[index].priceUsd.toString()} \$"),
                 trailing:
                     Text("Volume: ${state.items?[index].volume24.toString()}"),
                 leading: CircleAvatar(

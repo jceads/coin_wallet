@@ -27,7 +27,9 @@ class SearchCoinView extends StatelessWidget {
                     .read<SearchCoinCubit>()
                     .searchCoin(searchController.text),
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(), hintText: "Search..."),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    hintText: "Search..."),
               );
             },
           ),
