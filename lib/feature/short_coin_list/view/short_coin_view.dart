@@ -19,7 +19,7 @@ class ShortCoinList extends StatelessWidget {
           ShortCoinListService(dio: CoinNetworkService.instance.dio)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Bitcoin wallet s2ş"),
+          title: Text("Bitcoin wallet"),
         ),
         body: BlocProvider(
           create: (context) => ShortCoinListCubit(
